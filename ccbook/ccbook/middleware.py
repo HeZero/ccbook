@@ -32,7 +32,8 @@ class JsonMiddleWare(MiddlewareMixin):
             return HttpResponse(rs)
 
         if isinstance(response, QuerySet):
-            for o in response:
+            result = []
+            for o in response.all():
                 r = {}
                 for n, v in vars(o).items():
                     if n == "_state":
@@ -49,7 +50,9 @@ class JsonMiddleWare(MiddlewareMixin):
 
                     else:
                         r[n] = v
-                rs = self.ApiSuccess(r)
-                return HttpResponse(rs)
+                result.append(r)
+
+            rs = self.ApiSuccess(result)
+            return HttpResponse(rs)
 
         return response
