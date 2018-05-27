@@ -24,4 +24,11 @@ def getClassify(request):
 
 
 def getRecommend(request):
-    return None
+    ranks = Rank.objects.filter(rank_type="RECOMMEND").order_by("rank_num")[0:19]
+    if not ranks:
+        raise Exception("数据库异常,排名为空")
+    bookIds = []
+    for rank in ranks:
+        bookIds.append(rank.book_uuid)
+    books = Book.objects.filter(uni_uuid__in=bookIds)
+    return books
