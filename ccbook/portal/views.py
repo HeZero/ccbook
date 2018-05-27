@@ -14,7 +14,7 @@ def getNavgation(request):
 
 
 def getBook(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(use=True)
     return books
 
 
@@ -22,3 +22,6 @@ def getClassify(request):
     classifys = Classify.objects.filter(use=True)
     return classifys
 
+
+def getRecommend(request):
+    return None
