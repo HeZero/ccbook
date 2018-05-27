@@ -58,6 +58,10 @@ class Navigation(models.Model):
     name = models.CharField(db_index=True, max_length=40)
     url = models.CharField(max_length=225)
     use = models.BooleanField(help_text="是否使用")
+    index = models.IntegerField(default=0, help_text="菜单排序")
+
+    class Meta:
+        ordering = ['index']
 
     def save(self, *args, **kwargs):
         self.uni_uuid = str(uuid.uuid1())

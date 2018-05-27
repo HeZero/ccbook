@@ -9,7 +9,7 @@ def index(request):
 
 
 def getNavgation(request):
-    navs = Navigation.objects.all()
+    navs = Navigation.objects.filter(use=True)
     return navs
 
 

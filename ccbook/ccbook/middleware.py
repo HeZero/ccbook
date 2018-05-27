@@ -15,7 +15,7 @@ class JsonMiddleWare(MiddlewareMixin):
 
     def ApiResult(self, code, message, data):
         assert code in settings.code.keys()
-        data = str(data)
+        data = data
         return json.dumps({'code': code, 'message': message, 'data': data}, ensure_ascii=False)
 
     def ApiSuccess(self, data):
@@ -38,7 +38,7 @@ class JsonMiddleWare(MiddlewareMixin):
                 for n, v in vars(o).items():
                     if n == "_state":
                         continue
-                    if lang == settings.LANGUAGE_CODE:
+                    if lang.startswith("en"):
                         rv = v
                         orv = self.redis.get(rv)
                         if orv:
