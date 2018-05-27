@@ -14,7 +14,8 @@ def getNavgation(request):
 
 
 def getBook(request):
-    return None
+    books = Book.objects.all()
+    return books
 
 
 def getBookTranslate(request):
