@@ -20,5 +20,7 @@ from portal import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('navigation/', views.getNavgation, name='navigation')
+    path('navigation/', views.getNavgation, name='navigation'),
+    path('book/', views.getBook, name='books'),
+    path('classify/', views.getClassify, name='classify')
 ]

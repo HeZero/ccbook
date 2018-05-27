@@ -18,5 +18,7 @@ def getBook(request):
     return books
 
 
-def getBookTranslate(request):
-    return None
+def getClassify(request):
+    classifys = Classify.objects.filter(use=True)
+    return classifys
+
